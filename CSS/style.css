@@ -1,0 +1,53 @@
+label{
+	display:inline-block;
+	width: 80px;
+}
+
+input{
+
+}
+
+form{
+	border:none;
+}
+
+#left_column {
+	height: 100vh;
+}
+
+#chat_screen {
+	height: 100vh;
+}
+
+#currentChatInfo {
+	height: 50vh;
+	border: solid 1px green;
+}
+
+#currentUsername {
+	text-align: center !important; 
+}
+
+#ownAvatar {
+	height: 100px;
+	width: 100px;
+	border-radius: 50%;
+	background-size: 100px;
+	border: 1px solid red;
+}
+
+#availableConvos {
+	height: 50vh;
+	border: solid 1px blue;
+}
+
+#messages {
+	height: 80vh;
+	border: solid 2px pink;
+	overflow: scroll;
+}
+
+#typingArea {
+	height: 20vh;
+	border: solid 2px orange;
+}
