@@ -1,8 +1,14 @@
 <?php 
+
+include 'connection.php';
+
 if (isset($_POST["username"])) {
 	$username = $_POST["username"];
 	$password = $_POST["password"];
 }
+
+$sql = $pdo->query("SELECT * FROM Users");
+$tableUsers = $sql->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -18,13 +24,13 @@ if (isset($_POST["username"])) {
 </head>
 <body>
 	<!--LOGIN MODAL-->
-	<!--<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h4 class="modal-title">Welcome to MyChat!</h4>
 				</div>
-				<form action="index.php" method="get">
+				<form action="index.php" method="post" id="loginForm" onsubmit="return false">
 					<div class="modal-body">
 						<label for="username">Username: </label><input type="text" name="username" id="username" required>
 						<br>
@@ -34,13 +40,15 @@ if (isset($_POST["username"])) {
 						
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" onclick="login();">Login</button>
-						<button type="button" class="btn btn-default" onclick="register();">Register</button>
+						<input type="submit" class="btn btn-primary" id="login" value="Login">
+						<input type="submit" class="btn btn-default" onclick="register();" id="register" value="Register">
+						<!--<button type="button" class="btn btn-primary" onclick="login();">Login</button>
+						<button type="button" class="btn btn-default" onclick="register();">Register</button>-->
 					</div>
 				</form>
 			</div>
 		</div>
-	</div>-->		
+	</div>		
 	<!--END LOGIN MODAL-->
 	
 	<!--START LAYOUT-->
@@ -58,6 +66,17 @@ if (isset($_POST["username"])) {
 				</div>
 			</div>
 			<div class="row" id="availableConvos">
+				<ul>
+					<?php 
+
+					foreach ($tableUsers as $key => $value) {
+						if($value["username"] !== $username) {
+							echo "<li>".$value["username"]."</li>";
+						}
+					}
+
+					?>
+				</ul>
 			</div>
 		</div>
 
@@ -70,6 +89,21 @@ if (isset($_POST["username"])) {
 					<div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-8" id="usernameContact">
 					</div>
 				</div>
+				<div class="row">
+					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<?php
+
+						/*echo $username;
+
+						foreach ($tableUsers as $key => $value) {
+							if($value["username"] !== $username) {
+								echo "<li>".$value["username"]."</li>";
+							}
+						}*/
+
+						?>
+					</div>
+				</div>				
 			</div>
 			<div class="row" id="typingArea">
 				<div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-xs-10" id="textareaContainer">
