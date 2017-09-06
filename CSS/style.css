@@ -32,7 +32,7 @@ form{
 	height: 100px;
 	width: 100px;
 	border-radius: 50%;
-	background-size: 100px;
+	background-size: 100% 100%;
 	border: 1px solid red;
 }
 
@@ -42,12 +42,53 @@ form{
 }
 
 #messages {
-	height: 80vh;
+	height: 90vh;
 	border: solid 2px pink;
 	overflow: scroll;
 }
 
+#infoContact {
+	height: 10vh;
+	border: solid 3px red;
+	margin: 0;
+}
+
+#smallAvatar {
+	border: solid 1px blue;
+	border-radius: 50%;
+	height: 100%;
+	width: 10vh;
+}
+
+#usernameContact {
+	height: 100%;
+	line-height: 10vh;
+	text-align: center;
+}
+
 #typingArea {
-	height: 20vh;
+	height: 10vh;
 	border: solid 2px orange;
 }
+
+#textareaContainer {
+	height: 100%;
+	padding: 0;
+}
+
+#newMessage {
+	height: 100%;
+	width: 100%;
+	resize: none;
+}
+
+#sendContainer {
+	height: 100%;
+	padding: 0;
+}
+
+#sendButton {
+	height: 100%;
+	width: 100%;
+}
+
