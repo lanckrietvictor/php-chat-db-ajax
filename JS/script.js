@@ -1,5 +1,9 @@
 $(document).ready(function () {
 	//fillUpPage();
+	loadMessages();
+	$("#sendButton").click(function () {
+		insertNewMessage();
+	});
 });
 
 
@@ -28,3 +32,25 @@ $(document).ready(function () {
 /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	Buttons on page
 	!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+
+	function insertNewMessage () {
+		var message = $("#newMessage").val();
+
+		$.post("AJAX/insertNewMessage.php",
+		{
+			message: message
+		});
+	};
+
+/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	Get messages
+	!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+
+	function loadMessages () {
+		$.ajax({
+			url: "getMessages.php",
+			success: function (result) {
+				$("#messageBoard").html(result);
+			}
+		})
+	};

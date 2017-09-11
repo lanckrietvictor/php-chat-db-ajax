@@ -11,15 +11,28 @@ include 'connection.php';
 $username = $_SESSION["username"];
 $password = $_SESSION["password"];
 
-$sql = $pdo->query("SELECT * FROM Users");
-$tableUsers = $sql->fetchAll(PDO::FETCH_ASSOC);
+$users = $pdo->query("SELECT * FROM Users");
+$tableUsers = $users->fetchAll(PDO::FETCH_ASSOC);
+
+$messages = $pdo->query("SELECT * FROM Messages");
+$tableMessages = $messages->fetchAll(PDO::FETCH_ASSOC);
+
+if (isset($_POST["sendButton"])) {
+	insertMessage();
+}
+
+function insertMessage() {
+	$sender = $pdo->quote($_SESSION["username"]);
+	$sentMessage = $pdo->quote($_POST["newMessage"]);
+
+	$newMessage = "INSERT INTO Messages (sender, message) VALUES ($sender, $sentMessage)";
+	$pdo->prepare($newMessage)->execute();
+}
 
 if(isset($_POST["deconnect"])){
 	session_destroy();
 	header("Refresh:0");
 }
-
-
 
 ?>
 
@@ -51,17 +64,18 @@ if(isset($_POST["deconnect"])){
 				</div>
 			</div>
 			<div class="row" id="availableConvos">
-				<ul class="list-group">
-					<?php 
-
-					foreach ($tableUsers as $key => $value) {
-						if($value["username"] !== $username) {
-							echo "<li class='list-group-item'>".$value["username"]."</li>";
+				<form action="index.php" method="post">
+					<ul class="list-group">
+						<?php
+						foreach ($tableUsers as $key => $value) {
+							if($value["username"] !== $username) {
+								echo "<li class='list-group-item'>".$value["username"]."</li>";
+							}
 						}
-					}
 
-					?>
-				</ul>
+						?>
+					</ul>
+				</form>
 				<div class="row">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<form action="index.php" method="post">
@@ -79,21 +93,13 @@ if(isset($_POST["deconnect"])){
 					<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2" id="smallAvatar"></div>
 					<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
 					<div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-8" id="usernameContact">
+						<h3>Global chat</h3>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-						<?php
-
-						/*echo $username;
-
-						foreach ($tableUsers as $key => $value) {
-							if($value["username"] !== $username) {
-								echo "<li>".$value["username"]."</li>";
-							}
-						}*/
-
-						?>
+						<ul class="list-group" id="messageBoard">
+						</ul>
 					</div>
 				</div>			
 			</div>
@@ -106,8 +112,9 @@ if(isset($_POST["deconnect"])){
 						<span class="glyphicon glyphicon-send" aria-hidden="true"></span>
 					</button>
 				</div>
-			</div>
+			</form>
 		</div>
 	</div>
+</div>
 </body>
 </html>
