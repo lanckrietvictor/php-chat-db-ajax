@@ -1,14 +1,25 @@
 <?php 
 
+session_start();
+
+if(!isset($_SESSION["username"])){
+	header("Location: firstPage.php");
+}
+
 include 'connection.php';
 
-if (isset($_POST["username"])) {
-	$username = $_POST["username"];
-	$password = $_POST["password"];
-}
+$username = $_SESSION["username"];
+$password = $_SESSION["password"];
 
 $sql = $pdo->query("SELECT * FROM Users");
 $tableUsers = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+if(isset($_POST["deconnect"])){
+	session_destroy();
+	header("Refresh:0");
+}
+
+
 
 ?>
 
@@ -23,33 +34,6 @@ $tableUsers = $sql->fetchAll(PDO::FETCH_ASSOC);
 	<script type="text/javascript" src="JS/script.js"></script>
 </head>
 <body>
-	<!--LOGIN MODAL-->
-	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title">Welcome to MyChat!</h4>
-				</div>
-				<form action="index.php" method="post" id="loginForm" onsubmit="return false">
-					<div class="modal-body">
-						<label for="username">Username: </label><input type="text" name="username" id="username" required>
-						<br>
-						<label for="password">Password: </label><input type="password" name="password" id="password" required>
-					</div>
-					<div id="test">
-						
-					</div>
-					<div class="modal-footer">
-						<input type="submit" class="btn btn-primary" id="login" value="Login">
-						<input type="submit" class="btn btn-default" onclick="register();" id="register" value="Register">
-						<!--<button type="button" class="btn btn-primary" onclick="login();">Login</button>
-						<button type="button" class="btn btn-default" onclick="register();">Register</button>-->
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>		
-	<!--END LOGIN MODAL-->
 	
 	<!--START LAYOUT-->
 	<div class="container-fluid">
@@ -57,6 +41,7 @@ $tableUsers = $sql->fetchAll(PDO::FETCH_ASSOC);
 			<div class="row" id="currentChatInfo">
 				<div class="col-md-12">
 					<div class="row" id="currentUsername">
+						<?php echo $username; ?>
 					</div>
 				</div>
 				<div class="col-md-12">
@@ -66,17 +51,24 @@ $tableUsers = $sql->fetchAll(PDO::FETCH_ASSOC);
 				</div>
 			</div>
 			<div class="row" id="availableConvos">
-				<ul>
+				<ul class="list-group">
 					<?php 
 
 					foreach ($tableUsers as $key => $value) {
 						if($value["username"] !== $username) {
-							echo "<li>".$value["username"]."</li>";
+							echo "<li class='list-group-item'>".$value["username"]."</li>";
 						}
 					}
 
 					?>
 				</ul>
+				<div class="row">
+					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<form action="index.php" method="post">
+							<input type="submit" name="deconnect" value="Deconnect">
+						</form>
+					</div>	
+				</div>
 			</div>
 		</div>
 
@@ -103,7 +95,7 @@ $tableUsers = $sql->fetchAll(PDO::FETCH_ASSOC);
 
 						?>
 					</div>
-				</div>				
+				</div>			
 			</div>
 			<div class="row" id="typingArea">
 				<div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-xs-10" id="textareaContainer">
@@ -117,6 +109,5 @@ $tableUsers = $sql->fetchAll(PDO::FETCH_ASSOC);
 			</div>
 		</div>
 	</div>
-
 </body>
 </html>

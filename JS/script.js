@@ -1,54 +1,7 @@
-/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	LOGIN MODAL
-	!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
-
-//Open modal on page load
 $(document).ready(function () {
-	$("#loginModal").modal("show");
-	document.getElementById("login").addEventListener('click', function(event) {
-		event.preventDefault();
-		login();
-	});
+	//fillUpPage();
 });
 
-//Registration
-
-function register () {
-	var username = $("#username").val();
-	var password = $("#password").val();
-
-	$.post("AJAX/addNewUsers.php", 				
-	{
-		username: username, 
-		password: password
-	},
-	function (result) {
-		$("#test").html(result);
-	});
-};
-
-//Login
-
-function login () {
-	var username = $("#username").val();
-	var password = $("#password").val();
-
-	$.post("AJAX/login.php",
-	{
-		username: username, 
-		password: password
-	},
-	function (result) {
-			if(result == "success") {				//Close modal if login is correct
-				$("#loginModal").modal("hide");
-				fillUpPage(username, password);
-			}
-
-			else{
-				$("#test").html(result);			//Explain why login didn't work
-			}
-		})
-};
 
 /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	Filling up the page
@@ -71,3 +24,7 @@ function login () {
 			"</form>");
 	})
 }
+
+/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	Buttons on page
+	!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
