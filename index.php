@@ -57,19 +57,20 @@ if(isset($_POST["deconnect"])){
 						<?php echo $username; ?>
 					</div>
 				</div>
-				<div class="col-md-12">
+				<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="row center-block" id="ownAvatar">
 					</div>
 					<div class="row" id="fileUpload"></div>
 				</div>
 			</div>
 			<div class="row" id="availableConvos">
+				<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12"></div>
 				<form action="index.php" method="post">
 					<ul class="list-group">
 						<?php
 						foreach ($tableUsers as $key => $value) {
 							if($value["username"] !== $username) {
-								echo "<li class='list-group-item'>".$value["username"]."</li>";
+								echo "<li class='list-group-item'><span class='glyphicon glyphicon-record' aria-hidden='true'></span> ".$value["username"]."</li>";
 							}
 						}
 
@@ -96,7 +97,7 @@ if(isset($_POST["deconnect"])){
 						<h3>Global chat</h3>
 					</div>
 				</div>
-				<div class="row">
+				<div class="row" id="height">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<ul class="list-group" id="messageBoard">
 						</ul>

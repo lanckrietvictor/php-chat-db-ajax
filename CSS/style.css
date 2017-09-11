@@ -42,6 +42,10 @@ form{
 	overflow: scroll;
 }
 
+.list-group {
+	text-align: left
+}
+
 #messages {
 	height: 90vh;
 	border: solid 2px pink;

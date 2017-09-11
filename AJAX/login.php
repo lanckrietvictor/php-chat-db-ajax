@@ -20,6 +20,9 @@ foreach ($check_usernames as $key => $value) {
 	if($value["username"]==$username) {
 		if($value["password"]==$password) {
 			echo "success";
+			$username = $pdo->quote($username);
+			$status = "UPDATE Users SET Available = 1 WHERE username = $username";
+			$pdo->prepare($status)->execute();
 			break;
 		}
 		elseif($value["password"]!=$password){

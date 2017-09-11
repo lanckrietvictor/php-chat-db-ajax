@@ -1,6 +1,11 @@
 $(document).ready(function () {
 	//fillUpPage();
 	loadMessages();
+	window.setInterval(function () {
+		loadMessages();
+	}, 500);
+	
+
 	$("#sendButton").click(function () {
 		insertNewMessage();
 	});
@@ -40,6 +45,7 @@ $(document).ready(function () {
 		{
 			message: message
 		});
+		$("#newMessage").val("");
 	};
 
 /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
