@@ -66,11 +66,13 @@ if(isset($_POST["deconnect"])){
 			<div class="row" id="availableConvos">
 				<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12"></div>
 				<form action="index.php" method="post">
-					<ul class="list-group">
+					<ul class="list-group" id="availableUsers">
 						<?php
+						$i = 0;
 						foreach ($tableUsers as $key => $value) {
 							if($value["username"] !== $username) {
-								echo "<li class='list-group-item'><span class='glyphicon glyphicon-record' aria-hidden='true'></span> ".$value["username"]."</li>";
+								echo "<li class='list-group-item'><span id='".$value["username"]."' class='glyphicon glyphicon-record' aria-hidden='true'></span> ".$value["username"]."</li>";
+								$i++;
 							}
 						}
 

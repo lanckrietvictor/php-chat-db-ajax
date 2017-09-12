@@ -60,3 +60,12 @@ $(document).ready(function () {
 			}
 		})
 	};
+
+/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	Get messages
+	!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+
+	for (var i = 1; i <= $("#availableUsers").length; i++) {
+		var target = $("#availableUsers li:nth-child('"+i+"') span").attr("id");
+		
+	}
