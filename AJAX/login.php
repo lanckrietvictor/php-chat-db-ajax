@@ -10,6 +10,9 @@ include "../../php-chat-db-ajax/connection.php";
 $username = $_POST["username"];
 $password = $_POST["password"];
 
+$username = str_replace(' ','',$username); 
+$password = str_replace(' ','',$password); 
+
 $check = $pdo->query("SELECT * FROM Users");
 $check_usernames = $check->fetchAll(PDO::FETCH_ASSOC);
 

@@ -1,3 +1,7 @@
+body {
+	font-family: "Arial", Verdana, sans-serif;
+}
+
 label{
 	display:inline-block;
 	width: 80px;
@@ -11,68 +15,100 @@ form{
 	border:none;
 }
 
+.container-fluid {
+	overflow: hidden;
+	margin-top: 1vh;
+	margin-bottom: 1vh;
+}
+
 #left_column {
-	height: 100vh;
+	height: 93vh;
 }
 
 #chat_screen {
-	height: 100vh;
+	height: 93vh;
 }
 
 #currentChatInfo {
-	height: 30vh;
-	border: solid 1px green;
+	height: 29vh;
+	background-color: #e62739;
 }
 
 #currentUsername {
-	text-align: center !important; 
+	text-align: center !important;
+	line-height: 20px;
 }
 
 #ownAvatar {
-	height: 100px;
-	width: 100px;
+	height: 80px;
+	width: 80px;
 	border-radius: 50%;
 	background-size: 100% 100%;
-	border: 1px solid red;
+	background-image: url(../Avatar/test.png);
+	background-color: lightblue;
+}
+
+#deconnectButton {
+	margin-top: 5px;
+}
+
+#logout {
+    font-weight: bold;
+    border-radius: 5px;
 }
 
 #availableConvos {
-	height: 70vh;
+	height: 64vh;
 	border: solid 1px blue;
-	overflow: scroll;
+	background-color: #9068be;
+	overflow: auto;
 }
 
 .list-group {
 	text-align: left
 }
 
+.names {
+	background-color: #AE73E7;
+}
+
 #messages {
-	height: 90vh;
+	height: 75vh;
 	border: solid 2px pink;
-	overflow: scroll;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	/*display: flex;
+	flex-direction: column-reverse;*/
 }
 
 #infoContact {
-	height: 10vh;
-	border: solid 3px red;
-	margin: 0;
+	height: 9vh;
+	border: solid 1px red;
+	background-color: rgba(255, 0, 21, 0.51); 
 }
 
 #smallAvatar {
 	border: solid 1px blue;
 	border-radius: 50%;
 	height: 100%;
-	width: 10vh;
+	width: 9vh;
+	background-image: url(Logos/2_Flat_logo_on_transparent_124x73.png);
 }
 
 #usernameContact {
 	height: 100%;
-	line-height: 10vh;
+	line-height: 9vh;
 	text-align: center;
 }
 
+.message {
+	background-color: #e1e8f0;
+	border-color: rgba(112, 116, 120, 0.57);
+	word-wrap: break-word;
+}
+
 #typingArea {
-	height: 10vh;
+	height: 9vh;
 	border: solid 2px orange;
 }
 
@@ -85,6 +121,7 @@ form{
 	height: 100%;
 	width: 100%;
 	resize: none;
+	background-color: rgba(110, 211, 207, 0.36);
 }
 
 #sendContainer {
@@ -99,6 +136,7 @@ form{
 #sendButton {
 	height: 100%;
 	width: 100%;
+	background-color: rgba(110, 211, 207, 0.36);
 }
 
 #usernameList {
