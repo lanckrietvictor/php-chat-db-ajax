@@ -12,3 +12,6 @@ https://github.com/becodeorg/BXLAnderlecht/blob/master/06-PHP/php-chat.md
 
 ## Screenshots
 
+[Screenshot loginscreen](https://github.com/lanckrietvictor/php-chat-db-ajax/blob/master/Loginscreen%20chat.png)
+
+[Screenshot chatscreen](https://github.com/lanckrietvictor/php-chat-db-ajax/blob/master/Chatscreen.png)
